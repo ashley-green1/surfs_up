@@ -64,3 +64,17 @@ def precipitation():
     # Format results into a JSON structure
     precip = {date: prcp for date, prcp in precipitation}
     return jsonify(precip)
+
+
+# Create Station Analysis route
+@app.route("/api/v1.0/stations")
+
+# Create station function
+def stations():
+
+    # Perform a query to retrieve the stations
+    results = session.query(Station.station).all()
+
+    # Format results into a JSON structure
+    stations = list(np.ravel(results))
+    return jsonify(station=stations)
